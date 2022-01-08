@@ -35,7 +35,7 @@ jobs:
             echo "Downloader already there, cache hit?" 
           fi
           echo "Grabbing GeoIP databases..."
-          ./geoip-updater --edition-ids=GeoLite2-City,GeoLite2-ASN --license-key=${{ secrets.MAXMIND_LICENSE_KEY }} --download-path=./mmdb
+          ./geoip-updater --edition-ids=GeoLite2-City,GeoLite2-ASN --license-key=${{ secrets.MAXMIND_LICENSE_KEY }} --log-level debug --download-path=./mmdb
           echo "Done with grabbing." 
 
       - name: Set up QEMU
