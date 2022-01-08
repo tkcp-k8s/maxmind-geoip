@@ -3,6 +3,8 @@ name: main-latest
 on:
   push:
     branches: [ "main" ]
+  schedule:
+    - cron: '50 3 * * *' # Scheduled runs every day at 3:50am UTC
 
 env:
   GEOIP_UPDATER_VERSION: "1.6.0" # https://github.com/crazy-max/geoip-updater/releases
@@ -76,9 +78,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           pull: true # pull for latest alpine always, avoid bit rot
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest,ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ steps.prep.outputs.dailytag }}
+          tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ steps.prep.outputs.dailytag }}
           labels: |
-            org.opencontainers.image.title=${{ github.event.repository.name }}
+            org.opencontainers.image.title=${{ github.repository }}
             org.opencontainers.image.description=${{ github.event.repository.description }}
             org.opencontainers.image.url=${{ github.event.repository.html_url }}
             org.opencontainers.image.source=${{ github.event.repository.clone_url }}
