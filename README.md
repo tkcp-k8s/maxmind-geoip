@@ -10,3 +10,4 @@ Be creative:
     - Logstash, nginx-ingress, etc
 - in `FROM` in Dockerfiles as a stage and copy data over with `COPY`
     - when your app needs the data itself
+
